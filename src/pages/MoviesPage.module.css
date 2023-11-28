@@ -1,0 +1,28 @@
+.bk{
+
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+}
+
+/*.imggxxx{*/
+/*    width: 30vh;*/
+/*}*/
+/*.movie{*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    margin-top: 10px;*/
+/*    margin-left: 50px;*/
+
+
+/*}.movies{*/
+/*     display: flex;*/
+/*     flex-wrap: wrap;*/
+/*     width: 100%;*/
+/*     height: 100%;*/
+/*     justify-content: center;*/
+
+/* }*/

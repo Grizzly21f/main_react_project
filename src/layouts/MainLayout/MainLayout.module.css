@@ -1,0 +1,10 @@
+.light-theme {
+    background-color: #ffffff; /* Фон світлої теми */
+    color: #000000; /* Колір тексту для світлої теми */
+}
+
+/* Стилі для темної теми */
+.dark-theme {
+    background-color: #555a6b; /* Фон темної теми */
+
+}

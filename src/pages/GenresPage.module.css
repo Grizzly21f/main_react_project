@@ -1,0 +1,15 @@
+.bk{
+    background-color: #555a6b;
+    display: flex;
+    height: 92.38vh;
+    width: 100%;
+}
+
+.ddd{
+    display: flex;
+align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+}

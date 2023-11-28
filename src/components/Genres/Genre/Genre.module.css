@@ -1,0 +1,27 @@
+body {
+    overflow-x: hidden;
+}
+.sd {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+    height: 100px;
+    text-align: center;
+}
+
+.name{
+    display: flex;
+    align-items: center;
+    background-color: #f17085;
+    width: 100%;
+    height: 60px;
+   border-left: 2px solid black;
+    text-align: center;
+justify-content: center;
+}
+.name2{
+    display: flex;
+    align-items: center;
+text-align: center;
+}

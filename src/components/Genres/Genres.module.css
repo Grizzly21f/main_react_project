@@ -1,0 +1,44 @@
+body{
+
+}
+.dd{
+    display: flex;
+
+}
+
+.navmain{
+    display: flex;
+    align-items: center;
+    background-color: #f17085;
+    width: 100%;
+    height: 90px;
+    border-left: 2px solid black;
+    text-align: center;
+    justify-content: center;
+}
+.nav{
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.imggxxx{
+  width: 30vh;
+}
+.movie{
+display: flex;
+ flex-wrap: wrap;
+margin-top: 10px;
+margin-left: 50px;
+    margin-bottom: 20px;
+
+
+}.movies{
+   display: flex;
+     flex-wrap: wrap;
+    width: 100%;
+   height: 100%;
+justify-content: center;
+
+}

@@ -1,0 +1,29 @@
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.movie{
+
+}.movie>img{
+    width: 30vh;
+    margin: 20px;
+}
+
+.mainmain{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inpu{
+    width: 12vh;
+    height: 2vh;
+}
+.btt{
+
+    height: 2.4vh;
+}
