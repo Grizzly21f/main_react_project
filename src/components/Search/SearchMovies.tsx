@@ -2,22 +2,23 @@ import React, {useEffect, useState} from 'react';
 import css from './SearchMovies.module.css'
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {IMovie} from "../../interface/moviesinterface";
+import {axiosSearchMovies} from "../../services/axiosSearchMovies";
 import {useForm} from "react-hook-form";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
 import {mainActions} from "../../redux/slices/slice";
 
 const SearchMovies: React.FC = () => {
     const [query, setQuery] = useSearchParams({page: '1' });
-    const [movies, setMovies] = useState<IMovie[]>([]);
+    // const [movies, setMovies] = useState<IMovie[]>([]);
     const navigate = useNavigate();
     const {register,handleSubmit   } = useForm()
     const page = query.get('page') || '1'!;
-    const { page, query } = useAppSelector((state) => state.main);
+    const { movies } = useAppSelector((state) => state.main);
     const dispatch = useAppDispatch();
 
 
     useEffect(() => {
-        dispatch(mainActions.getSearchMovies({}))
+        dispatch(mainActions.getSearchMovies({query:query.get('query'),page}))
         // axiosSearchMovies.getSearchMovies(query.get('query'),query.get('page')).then(({data})=> setMovies(data.results))
     }, [query.get('query'),query.get('page')]);
 
@@ -28,7 +29,6 @@ const SearchMovies: React.FC = () => {
             return prev
         })
     }
-
 
     return (
         <div className={css.mainmain}>
