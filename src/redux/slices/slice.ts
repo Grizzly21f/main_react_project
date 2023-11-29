@@ -38,6 +38,18 @@ const getMovies = createAsyncThunk<IMovies, { page: string }>(
         }
     }
 );
+const getMoviesByGenres = createAsyncThunk<IMovies, { page: string }>(
+    'mainSlice/getMoviesByGenres',
+    async ({ page }, thunkAPI) => {
+        try {
+            const { data } = await axiosMoviesServices.getAll(page);
+            return thunkAPI.fulfillWithValue(data);
+        } catch (e) {
+            const error = e as AxiosError;
+            return thunkAPI.rejectWithValue(error.response?.data);
+        }
+    }
+);
 const getMoviesInfoServices = createAsyncThunk<IGenres,void>(
     'mainSlice/getMoviesInfoServices',
     async (_, thunkAPI) => {
@@ -59,8 +71,8 @@ const getGenres = createAsyncThunk<IGenres, void>(
             const {data} = await axiosGenresService.getAll()
             return data
         } catch (e) {
-            const err = e as AxiosError
-            return rejectWithValue(err.response?.data)
+            const error = e as AxiosError;
+            return rejectWithValue(error.response?.data)
         }
     }
 )
@@ -71,8 +83,8 @@ const getMoviesByGenre = createAsyncThunk<IMovies, {genre_ids: string,page:strin
             const {data} = await axiosGenresService.getMoviesByGenre(genre_ids,page)
             return data
         } catch (e) {
-            const err = e as AxiosError
-            return rejectWithValue(err.response?.data)
+            const error = e as AxiosError;
+            return rejectWithValue(error.response?.data)
         }
     }
 )
@@ -83,8 +95,8 @@ const getSearchMovies = createAsyncThunk<IMovies, {query: string, page: string}>
             const {data} = await axiosSearchMovies.getSearchMovies(query,page)
             return data
         } catch (e) {
-            const err = e as AxiosError
-            return rejectWithValue(err.response?.data)
+            const error = e as AxiosError;
+            return rejectWithValue(error.response?.data)
         }
     }
 )
@@ -116,6 +128,10 @@ const mainSlice = createSlice({
                 state.errors = null;
             })
             .addCase(getSearchMovies.fulfilled, (state, action) => {
+                state.movies = action.payload.results;
+                state.errors = null;
+            })
+            .addCase(getMoviesByGenres.fulfilled, (state, action) => {
                 state.movies = action.payload.results;
                 state.errors = null;
             })

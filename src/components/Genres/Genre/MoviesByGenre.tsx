@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {useParams, useSearchParams} from 'react-router-dom';
 import { axiosMoviesServices } from '../../../services/axiosMoviesServices';
 import { IMovie } from '../../../interface/moviesinterface';
+import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHooks";
+import {mainActions} from "../../../redux/slices/slice";
 
 interface IResMovies {
     movies: IMovie[];
@@ -9,13 +11,14 @@ interface IResMovies {
 
 const MoviesByGenre: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const [movies, setMovies] = useState<IMovie[]>([]);
     const [query, setQuery] = useSearchParams({ page: '1' });
     const page = query.get('page') || '1'!;
+    const { movies, errors } = useAppSelector((state) => state.main);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        axiosMoviesServices.getAll(page).then(({ data }) => setMovies(data.results));
-    }, [page]);
+        dispatch(mainActions.getMovies({ page }));
+    }, [dispatch, page]);
 
     return (
         <div>
