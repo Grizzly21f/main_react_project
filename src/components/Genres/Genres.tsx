@@ -1,28 +1,26 @@
-
-import React, { useEffect, useState } from 'react';
-import { IGenre } from '../../interface/genresInterface';
-import { axiosGenresService } from '../../services/axiosGenresService';
+import React, { useEffect} from 'react';
 import Genre from './Genre/Genre';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import css from './Genres.module.css';
-import { IMovie } from '../../interface/moviesinterface';
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
+import {mainActions} from "../../redux/slices/slice";
 
 const Genres = () => {
-    const [genres, setGenres] = useState<IGenre[]>([]);
-    const [movies, setMovies] = useState<IMovie[]>([]);
     const { genreId } = useParams<{ genreId?: string }>();
     const [query] = useSearchParams({ page: '1' });
     const page = query.get('page') || '1'!;
     const navigate = useNavigate();
+    const {genres,movies} = useAppSelector((state) => state.main);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (genreId) {
-            axiosGenresService.getMoviesByGenre(genreId, page).then(({ data }) => { setMovies(data.results) });
-        }
+
+        dispatch(mainActions.getMoviesByGenre({genre_ids:genreId,page}))
+
     }, [genreId, page]);
 
     useEffect(() => {
-        axiosGenresService.getAll().then(({ data }) => { setGenres(data.genres) });
+        dispatch(mainActions.getGenres())
     }, []);
 
     return (
@@ -46,3 +44,4 @@ const Genres = () => {
 };
 
 export { Genres };
+
